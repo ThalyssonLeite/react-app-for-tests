@@ -25,6 +25,7 @@
 	transition: 0.1s ease;
 	backdrop-filter: blur(4px);
 	background: oklch(var(--default-1000) / 50%);
+	user-select: none;
 	--local-muted-color: oklch(from oklch(var(--default-900)) var(--lighten-3));
 	--local-color: oklch(var(--default-900));
 	--local-background: oklch(var(--default-50));
@@ -48,7 +49,6 @@
 
 .command-menu__modal-content {
 	width: min(700px, 85%);
-	height: min(500px, 85%);
 	background: var(--local-background);
 	border-radius: 16px;
 	color: var(--local-color);
@@ -65,7 +65,22 @@
 
 .command-menu__magnifier-icon {
 	padding: 0px;
+
+	i {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		width: 18px;
+		height: 18px;
+	}
 }
+
+@media (max-width: 768px) {
+	.command-menu__magnifier-icon {
+		display: none;
+	}
+}
+
 
 .command-menu__search {
 	height: 24px;
@@ -77,6 +92,7 @@
 	line-height: 0;
 	color: var(--local-color);
 	min-width: 50px;
+	flex: 1;
 
 	&::placeholder {
 		color: var(--local-muted-color);
@@ -84,7 +100,6 @@
 }
 
 .command-menu__close-button {
-	flex: 1;
 	display: flex;
 	justify-content: flex-end;
 	align-items: center;
@@ -105,13 +120,35 @@
 			background: oklch(from var(--local-muted-color) var(--lighten-1));
 		}
 	}
+
+	i {
+		display: none;
+		justify-content: center;
+		align-items: center;
+		width: 18px;
+		height: 18px;
+		cursor: pointer;
+	}
+}
+
+@media (max-width: 768px) {
+	.command-menu__close-button {
+		pre {
+			display: none;
+		}
+
+		i {
+			display: flex;
+		}
+	}
 }
 
 .command-menu__results {
 	display: flex;
 	flex-direction: column;
-	gap: 16px;
 	padding: 8px 16px 8px 8px;
+	overflow: auto;
+	height: min(500px, 60vh);
 }
 
 .command-menu__section {
@@ -123,6 +160,7 @@
 	font-size: 14px;
 	color: var(--local-muted-color);
 	padding: 4px 8px;
+	font-weight: bold;
 }
 
 .command-menu__link {
@@ -135,7 +173,41 @@
 	cursor: default;
 
 	&:hover {
-		background: oklch(from var(--local-muted-color) l c h / 10%);
-		transition: 0.1s ease;
+		background: oklch(var(--accent-600));
+		color: oklch(var(--accent-600-foreground));
+
+		.command-menu__link-icon {
+			color: oklch(var(--accent-600-foreground));
+		}
+
+		.command-menu__enter-icon {
+			display: block;
+		}
+	}
+}
+
+.command-menu__link-icon {
+	color: oklch(var(--accent-600));
+}
+
+.command-menu__link-text {
+	flex: 1;
+
+	.command-menu__link-submenu-name {
+		font-weight: 600;
+	}
+}
+
+.command-menu__enter-icon {
+	display: none;
+
+	i {
+		color: oklch(var(--accent-600-foreground));
+	}
+}
+
+@media (max-width: 768px) {
+	.command-menu__link:hover .command-menu__enter-icon {
+		display: none;
 	}
 }

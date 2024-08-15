@@ -11,16 +11,16 @@
 
 .header {
 	grid-area: header;
-	background: red;
+	background: oklch(var(--primary-400));
 }
 
 .sidebar {
 	grid-area: sidebar;
-	background: blue;
+	background: oklch(var(--menu));
 	padding: 40px 8px;
 }
 
 .content {
 	grid-area: content;
-	background: green;
+	background: oklch(var(--default-100));
 }
