@@ -1,0 +1,26 @@
+#root {
+	width: 100vw;
+	height: 100vh;
+	display: grid;
+	grid-template-areas:
+		'sidebar header header'
+		'sidebar content content';
+	grid-template-rows: 32px 1fr;
+	grid-template-columns: min-content 1fr;
+}
+
+.header {
+	grid-area: header;
+	background: red;
+}
+
+.sidebar {
+	grid-area: sidebar;
+	background: blue;
+	padding: 40px 8px;
+}
+
+.content {
+	grid-area: content;
+	background: green;
+}
